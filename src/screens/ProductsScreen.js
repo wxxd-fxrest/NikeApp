@@ -3,11 +3,11 @@ import { FlatList } from "react-native";
 import styled from "styled-components";
 import products from '../data/products.js';
 
-const ProductsScreen = () => {
+const ProductsScreen = ({ navigation }) => {
     return (
         <FlatList data={products}
             renderItem={({ item }) => (
-                <ImageBox>
+                <ImageBox onPress={() => navigation.navigate('ProductDetail')} activeOpacity={0.4}>
                     <MainImg source={{ uri: item.image }}/>
                 </ImageBox>
             )}
@@ -17,7 +17,7 @@ const ProductsScreen = () => {
     )
 };
 
-const ImageBox = styled.View`
+const ImageBox = styled.TouchableOpacity`
 	width: 50%;
 	padding: 1px;
 `;

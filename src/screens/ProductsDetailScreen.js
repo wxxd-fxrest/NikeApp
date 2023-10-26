@@ -76,7 +76,7 @@ const Title = styled.Text`
 const Price = styled.Text`
     font-size: 16px;
     font-weight: 500;
-    letter-spacing: 2;
+    letter-spacing: 2px;
 `;
 
 const Description = styled.Text`
@@ -86,6 +86,21 @@ const Description = styled.Text`
     line-height: 30px;
 `;
 
- 
+ const ButtonBox = styled.TouchableOpacity`
+    position: absolute;
+    background-color: black;
+    bottom: 30px;
+    width: 90%;
+    align-self: center;
+    padding: 20px;
+    border-radius: 30px;
+    align-items: center;
+`;
+
+const ButtonText = styled.Text`
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+`;
 
 export default ProductDetailsScreen;
