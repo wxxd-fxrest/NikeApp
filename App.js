@@ -1,12 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
 import styled from 'styled-components';
 import ProductsScreen from './src/screens/ProductsScreen';
+import ProductDetailsScreen from './src/screens/ProductsDetailScreen';
 
 export default function App() {
 	return (
 		<Container>
-			<ProductsScreen />
+			{/* <ProductsScreen /> */}
+			<ProductDetailsScreen />
 			<StatusBar style='auto' />
 		</Container>
 	);
@@ -16,6 +18,4 @@ export default function App() {
 const Container = styled.View`
 	flex: 1;
 	background-color: '#fff';
-	align-items: center;
-	justify-content: center;
 `;
