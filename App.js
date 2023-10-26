@@ -8,16 +8,8 @@ import { store } from './src/store';
 export default function App() {
 	return (
 		<Provider store={store}>
-			<Container>
-				<Navigation />
-				<StatusBar style='auto' />
-			</Container>
+			<Navigation />
+			<StatusBar style='auto' />
 		</Provider>
 	);
-}
-
-
-const Container = styled.View`
-	flex: 1;
-	background-color: '#fff';
-`;
+}; 
