@@ -46,7 +46,7 @@ const ProductDetailsScreen = () => {
                 
             </ScrollBox>
             <ButtonBox onPress={onClickAddCart} activeOpacity={0.6}>
-                <ButtonText> Add to Cart</ButtonText>
+                <ButtonText> Add to Cart </ButtonText>
             </ButtonBox>
         </Container>
     );
@@ -86,21 +86,6 @@ const Description = styled.Text`
     line-height: 30px;
 `;
 
-const ButtonBox = styled.TouchableOpacity`
-    position: absolute;
-    background-color: black;
-    bottom: 30px;
-    width: 90%;
-    align-self: center;
-    padding: 20px;
-    border-radius: 30px;
-    align-items: center;
-`;
-
-const ButtonText = styled.Text`
-    color: white;
-    font-weight: 500;
-    font-size: 16px;
-`;
+ 
 
 export default ProductDetailsScreen;
