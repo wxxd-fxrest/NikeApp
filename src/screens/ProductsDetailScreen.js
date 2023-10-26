@@ -1,12 +1,13 @@
 import React from "react";
 import { Dimensions, FlatList, Pressable } from "react-native";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import products from "../data/products.js";
 
 const {width: SCREENWIDTH, height : SCREENHEIGHT} = Dimensions.get("window");
 
 const ProductDetailsScreen = () => {
-    const product = products[0];
+    const product = useSelector((state) => state.products.selectedProduct);
 
     const onClickAddCart = () => {
         console.log('add to caart');
