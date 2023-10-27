@@ -9,21 +9,21 @@ const CartListItem = ({ cartItem }) => {
 
 	const increaseQuantity = () => {
 		dispatch(cartSlice.actions.changeQuantity({
-			productID: cartItem.product.id, 
+			productID: cartItem.product._id, 
 			amount: 1,
 		}));
 	};
 
 	const decreaseQuantity = () => {
 		dispatch(cartSlice.actions.changeQuantity({
-			productID: cartItem.product.id, 
+			productID: cartItem.product._id, 
 			amount: -1,
 		}));
 	};
 
 	const onClickProductDelete = () => {
 		dispatch(cartSlice.actions.deleteProduct({
-			productID: cartItem.product.id, 
+			productID: cartItem.product._id, 
 		}))
 	}
 

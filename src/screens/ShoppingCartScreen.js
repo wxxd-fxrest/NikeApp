@@ -1,9 +1,10 @@
 import React from "react";
-import { FlatList } from "react-native";
-import { useSelector } from "react-redux";
+import { Alert, FlatList } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import CartListItem from "../components/CartListItem";
-import { selectDeliceryPrice, selectSubtotal, selectTotal } from "../store/cartSlice";
+import { useCreateOrderMutation } from "../store/apiSlice";
+import { cartSlice, selectDeliceryPrice, selectSubtotal, selectTotal } from "../store/cartSlice";
 
 const ShoppingCartTotals = () => {
     const subtotal = useSelector(selectSubtotal);
@@ -29,8 +30,35 @@ const ShoppingCartTotals = () => {
 };
 
 const ShoppingCartScreen = () => {
+    const subtotal = useSelector(selectSubtotal);
+    const deliveryFee = useSelector(selectDeliceryPrice);
+    const total = useSelector(selectTotal);
+
     const cartItems = useSelector((state) => state.cart.items);
+
+    const [createOrder, { data, isLoading, error }] = useCreateOrderMutation();
     
+    console.log(error, isLoading, data)
+
+
+	const dispatch = useDispatch();
+    const onCreateOrder = async () => {
+        const result = await createOrder({
+            items: cartItems,
+            subtotal,
+            deliveryFee,
+            total,
+        });
+        if (result.data?.status === 'OK') {
+            Alert.alert(
+                'Order has been submitted',
+                `Your order reference is: ${result.data.data.ref}`
+            );
+            dispatch(cartSlice.actions.clear());
+        }
+    };
+    
+
     return (
         <>
             <FlatList data={cartItems}
@@ -39,7 +67,7 @@ const ShoppingCartScreen = () => {
                 )}
                 ListFooterComponent={ShoppingCartTotals}
             />
-            <ButtonBox activeOpacity={0.6}>
+            <ButtonBox activeOpacity={0.6} onPress={onCreateOrder}>
                 <ButtonText> Checkout </ButtonText>
             </ButtonBox>
         </>

@@ -13,10 +13,11 @@ const ProductDetailsScreen = ({ route }) => {
 
     const { data, isLoading, error } = useGetProductQuery(id);
 
+    const product = data?.data; 
+
     const onClickAddCart = () => {
         dispatch(cartSlice.actions.addCartItem({ product }));
     };
-    console.log(route.params.id)
 
     if(isLoading) {
         return <ActivityIndicator />
@@ -25,7 +26,6 @@ const ProductDetailsScreen = ({ route }) => {
     if(error) {
         return <Text> {error.error} </Text>
     }
-    const product = data.data; 
 
     return (
         <Container>
