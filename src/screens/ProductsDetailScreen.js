@@ -1,19 +1,31 @@
 import React from "react";
-import { Dimensions, FlatList, Pressable } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { ActivityIndicator, Dimensions, FlatList, Pressable, Text } from "react-native";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import products from "../data/products.js";
+import { useGetProductQuery } from "../store/apiSlice.js";
 import { cartSlice } from "../store/cartSlice.js";
 
 const {width: SCREENWIDTH, height : SCREENHEIGHT} = Dimensions.get("window");
 
-const ProductDetailsScreen = () => {
-    const product = useSelector((state) => state.products.selectedProduct);
+const ProductDetailsScreen = ({ route }) => {
+    const id = route.params.id; 
     const dispatch = useDispatch();
+
+    const { data, isLoading, error } = useGetProductQuery(id);
 
     const onClickAddCart = () => {
         dispatch(cartSlice.actions.addCartItem({ product }));
     };
+    console.log(route.params.id)
+
+    if(isLoading) {
+        return <ActivityIndicator />
+    }
+
+    if(error) {
+        return <Text> {error.error} </Text>
+    }
+    const product = data.data; 
 
     return (
         <Container>
